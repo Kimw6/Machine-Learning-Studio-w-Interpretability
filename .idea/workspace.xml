@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4565150-f96f-467b-9b63-0a7caa59bee8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Home.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_Linear.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_Linear.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/1Preprocess_Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/1Preprocess_Data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/2Linear_Models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/2Linear_Models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/3Decision_Trees.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/3Decision_Trees.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/4Ensemble Methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/4Ensemble Methods.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilityFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilityFunctions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +53,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737067572967</updated>
-      <workItem from="1737067574000" duration="9738000" />
+      <workItem from="1737067574000" duration="17474000" />
     </task>
     <servers />
   </component>

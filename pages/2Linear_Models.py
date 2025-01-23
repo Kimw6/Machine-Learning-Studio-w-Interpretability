@@ -1,6 +1,5 @@
 import streamlit as st
 from utilityFunctions import  display_results
-
 from Model_Linear import LinearSupportVectorMachineModel, LogisticRegressionModel
 
 st.subheader('`Linear Models for Classification`')
@@ -11,28 +10,31 @@ default_session_state = {
     'test_size': None,
     'random_state': None,
     'train' : None,
-    'trained_model': None,
-    'accuracy': None,
-    'metrics_report': None,
-    'cm': None,
 }
 
 for key, value in default_session_state.items():
     if key not in st.session_state:
         st.session_state[key] = value
 
-if st.session_state['trained_model'] is not None and st.session_state['accuracy'] is not None and st.session_state['metrics_report'] is not None and st.session_state['cm'] is not None:
-    display_results()
-
 model_type = ['Linear Support Vector Machine', 'Logistic Regression']
+
+if 'models' not in st.session_state:
+    st.session_state['models'] = {}
+
+for model in model_type:
+    if model not in st.session_state['models']:
+        st.session_state['models'][model] = None
+
+if st.session_state['models'][model_type[0]] is not None:
+    display_results(st.session_state['models'][model_type[0]])
+elif st.session_state['models'][model_type[1]] is not None:
+    display_results(st.session_state['models'][model_type[1]])
+else:
+    st.write(f"No trained model found.")
+
 
 def linear_model():
     def on_click():
-        st.session_state['trained_model'] = None
-        st.session_state['accuracy'] = None
-        st.session_state['metrics_report'] = None
-        st.session_state['cm'] = None
-
         if st.session_state['temp_linear_model'] is None:
             st.warning('Please select a model.', icon="⚠️")
             return
@@ -67,11 +69,13 @@ if st.session_state['train']:
     if model_type == 'Linear Support Vector Machine':
         model = LinearSupportVectorMachineModel()
         model.parameters()
+        st.session_state['temp_name'] = model_type
 
     if model_type == 'Logistic Regression':
         model = LogisticRegressionModel()
         model.parameters()
 
+        st.session_state['temp_name'] = model_type
 
     st.session_state['train'] = False
 

@@ -1,4 +1,5 @@
 import streamlit as st
+from utilityFunctions import  display_results
 from Model_Ensemble import RandomForestClassifierModel, GradientBoostingClassifierModel, AdaBoostClassifierModel
 
 st.subheader("`Ensemble Methods for Classification`")
@@ -10,16 +11,28 @@ default_session_state = {
     'test_size': None,
     'random_state': None,
     'train' : None,
+    'trained_model': None,
+    'accuracy': None,
+    'metrics_report': None,
+    'cm': None,
 }
 
 for key, value in default_session_state.items():
     if key not in st.session_state:       
         st.session_state[key] = value
 
+if st.session_state['trained_model'] is not None and st.session_state['accuracy'] is not None and st.session_state['metrics_report'] is not None and st.session_state['cm'] is not None:
+    display_results()
+
 model_type = ['Random Forest Classifier', 'AdaBoost Classifier', 'Gradient Boosting Classifier']
 
 def model_selection():
     def on_click():
+        st.session_state['trained_model'] = None
+        st.session_state['accuracy'] = None
+        st.session_state['metrics_report'] = None
+        st.session_state['cm'] = None
+
         if st.session_state['temp_linear_model'] is None:
             st.warning('Please select a model.', icon="⚠️")
             return

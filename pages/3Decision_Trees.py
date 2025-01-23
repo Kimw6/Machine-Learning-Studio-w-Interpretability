@@ -1,4 +1,5 @@
 import streamlit as st
+from utilityFunctions import  display_results
 from Model_DecisionTree import DecisionTreeClassifierModel
 
 st.subheader('`Decision Trees Models for Classification`')
@@ -18,8 +19,25 @@ for key, value in default_session_state.items():
 
 model_type = ['Decision Tree Classifier']
 
+if 'models' not in st.session_state:
+    st.session_state['models'] = {}
+
+for model in model_type:
+    if model not in st.session_state['models']:
+        st.session_state['models'][model] = None
+
+if st.session_state['models'][model_type[0]] is not None:
+    display_results(st.session_state['models'][model_type[0]])
+else:
+    st.write(f"No trained model found.")
+
 def model_selection():
     def on_click():
+        st.session_state['trained_model'] = None
+        st.session_state['accuracy'] = None
+        st.session_state['metrics_report'] = None
+        st.session_state['cm'] = None
+
         if st.session_state['temp_linear_model'] is None:
             st.warning('Please select a model.', icon="⚠️")
             return
@@ -57,5 +75,6 @@ if st.session_state['train']:
     if model_type == 'Decision Tree Classifier':
         model = DecisionTreeClassifierModel()
         model.parameters()
+        st.session_state['temp_name'] = model_type
 
     st.session_state['train'] = False

@@ -18,6 +18,7 @@ def train_model(model, feature_importance=False, decision_tree=False):
     X = df.drop(target, axis=1)
     y = df[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+
     try:
         model.fit(X_train, y_train)
     except Exception as e:
@@ -25,7 +26,6 @@ def train_model(model, feature_importance=False, decision_tree=False):
         return
 
     y_pred = evaluate_model(model, X_test, y_test)
-    st.session_state['trained_model'] = model
 
     if feature_importance:
         st.write('Feature Importance')
@@ -39,28 +39,36 @@ def train_model(model, feature_importance=False, decision_tree=False):
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
     accuracy = metrics.accuracy_score(y_test, y_pred)
-    st.session_state['accuracy'] = accuracy
     metrics_report = metrics.classification_report(y_test, y_pred, output_dict=True)
-    st.session_state['metrics_report'] = metrics_report
     # for row in metrics_report:
     #     st.write(row, metrics_report[row])
-    confusion_matrix(y_test, y_pred)
+    cm = confusion_matrix(y_test, y_pred)
+
+    save_model_results(model, st.session_state['temp_name'], accuracy, metrics_report, cm)
     return y_pred
 
 # Confusion Matrix creates a heatmap of the confusion matrix
 def confusion_matrix(y_test, y_pred):
     cm = metrics.confusion_matrix(y_test, y_pred)
-    st.session_state['cm'] = cm
     return cm
 
-def display_results():
-    st.write('***Accuracy: {:.2f}***'.format(st.session_state['accuracy']))
-    st.write('Classification Report for', st.session_state['linear_model'])
+def save_model_results(model, model_name, accuracy, metrics_report, cm):
+    st.session_state['models'][model_name] = {
+        'model': model,
+        'accuracy': accuracy,
+        'metrics_report': metrics_report,
+        'confusion_matrix': cm,
+        'name_of_model': model_name,
+    }
 
-    data = pd.DataFrame(st.session_state['metrics_report']).transpose()
+def display_results(model):
+    st.write('***Accuracy: {:.2f}***'.format(model['accuracy']))
+    st.write('Classification Report for', model['name_of_model'])
+
+    data = pd.DataFrame(model['metrics_report']).transpose()
     st.write(data)
     fig, ax = plt.subplots()
-    sns.heatmap(st.session_state['cm'] , annot=True, fmt='d', ax=ax)
+    sns.heatmap(model['confusion_matrix'] , annot=True, fmt='d', ax=ax)
     ax.set_xlabel('Predicted')
     ax.set_ylabel('Actual')
     ax.set_title('Confusion Matrix')
