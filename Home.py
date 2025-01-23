@@ -30,4 +30,4 @@ links to resources and tutorials to help you get started with machine learning.
 **Dive in, upload your data, and embark on your machine learning journey!**
 """)
 
-st.warning('Please note that this platform is currently in beta. If you encounter any issues, please contact at akuroda@uw.edu')
+st.warning('Please note that this platform is currently in beta. If you encounter any issues, please contact at chojon99@uw.edu')

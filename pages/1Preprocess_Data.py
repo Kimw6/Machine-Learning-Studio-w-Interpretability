@@ -18,6 +18,11 @@ st.session_state.setdefault('target', None)
 st.session_state.setdefault('col_remove', [])
 st.session_state.setdefault('norm_method', None)
 
+st.session_state.setdefault('trained_model', None)
+st.session_state.setdefault('accuracy', None)
+st.session_state.setdefault('metrics_report', None)
+st.session_state.setdefault('cm', None)
+
 # List of normalization methods
 NORM_TYPE = [None, 'StandardScaler', 'MinMaxScaler', 'MaxAbsScaler', 'RobustScaler', 'QuantileTransformer']
 

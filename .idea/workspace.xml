@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b4565150-f96f-467b-9b63-0a7caa59bee8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Home.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model_Linear.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_Linear.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/1Preprocess_Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/1Preprocess_Data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/2Linear_Models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/2Linear_Models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilityFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilityFunctions.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2rjLWmL1AfxLDLP6XJc64HJdmUD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Week2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/yunho/Desktop/GitHub/Machine-Learning-Platform",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4565150-f96f-467b-9b63-0a7caa59bee8" name="Changes" comment="" />
+      <created>1737067572967</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737067572967</updated>
+      <workItem from="1737067574000" duration="9738000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

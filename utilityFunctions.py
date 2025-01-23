@@ -23,7 +23,10 @@ def train_model(model, feature_importance=False, decision_tree=False):
     except Exception as e:
         handle_errors(e)
         return
+
     y_pred = evaluate_model(model, X_test, y_test)
+    st.session_state['trained_model'] = model
+
     if feature_importance:
         st.write('Feature Importance')
     if decision_tree:
@@ -31,50 +34,49 @@ def train_model(model, feature_importance=False, decision_tree=False):
     #     render_tree(model, X, y)
     return (model, y_pred)
 
-
-# This need needs to be fixed. Future work to render the decision tree
-def render_tree(model, columns, target):
-    fig, ax = plt.subplots(figsize=(12, 8))  
-    plot_tree(model, feature_names=columns, class_names=[str(t) for t in target], filled=True, ax=ax)
-    st.pyplot(fig)
-
- 
-
 # This function evaluates the model and displays the accuracy, 
 # classification report, and confusion matrix
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
     accuracy = metrics.accuracy_score(y_test, y_pred)
-    st.write('***Accuracy: {:.2f}***'.format(accuracy))
-    st.write('Classification Report')
+    st.session_state['accuracy'] = accuracy
     metrics_report = metrics.classification_report(y_test, y_pred, output_dict=True)
-    data = pd.DataFrame(metrics_report).transpose()
-    st.write(data)
+    st.session_state['metrics_report'] = metrics_report
     # for row in metrics_report:
     #     st.write(row, metrics_report[row])
     confusion_matrix(y_test, y_pred)
     return y_pred
 
-
 # Confusion Matrix creates a heatmap of the confusion matrix
 def confusion_matrix(y_test, y_pred):
     cm = metrics.confusion_matrix(y_test, y_pred)
+    st.session_state['cm'] = cm
+    return cm
+
+def display_results():
+    st.write('***Accuracy: {:.2f}***'.format(st.session_state['accuracy']))
+    st.write('Classification Report for', st.session_state['linear_model'])
+
+    data = pd.DataFrame(st.session_state['metrics_report']).transpose()
+    st.write(data)
     fig, ax = plt.subplots()
-    sns.heatmap(cm, annot=True, fmt='d', ax=ax)
+    sns.heatmap(st.session_state['cm'] , annot=True, fmt='d', ax=ax)
     ax.set_xlabel('Predicted')
     ax.set_ylabel('Actual')
     ax.set_title('Confusion Matrix')
     st.pyplot(fig)
-    
-    return cm
-
 
 # This function calculates the permutation importance of each feature
 def perm_importance(model, X_test, y_test):
     result = permutation_importance(model, X_test, y_test, random_state=42)
     st.write(result.importances_mean)
 
+# This need needs to be fixed. Future work to render the decision tree
+def render_tree(model, columns, target):
+    fig, ax = plt.subplots(figsize=(12, 8))
+    plot_tree(model, feature_names=columns, class_names=[str(t) for t in target], filled=True, ax=ax)
+    st.pyplot(fig)
 
 def handle_errors(e):
     st.warning('Something went wrong. Check your data set and try again. May contain non-numeric values.')
-  
+
