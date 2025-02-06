@@ -1,0 +1,18 @@
+{
+  "name": "machine-learning-platform",
+  "version": "1.0.0",
+  "description": "This repository contains a Streamlit web application. Streamlit is a Python library for creating web apps with minimal effort. This README provides instructions on how to set up and run the app locally using a virtual environment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "shadcn-ui": "^0.9.4",
+    "tailwindcss": "^4.0.1"
+  }
+}

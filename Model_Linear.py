@@ -1,7 +1,7 @@
 import streamlit as st
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
-from utilityFunctions import  train_model
+from utilityFunctions import train_model
 import pandas as pd
 
 BINARY = [True, False]

@@ -9,7 +9,9 @@
 # seaborn
 # streamlit
 # tensorflow
-
+# ipython
+# ydata-profiling
+# shap
 
 matplotlib
 numpy
@@ -20,3 +22,5 @@ scipy
 seaborn
 streamlit
 tensorflow
+ipython
+shap
