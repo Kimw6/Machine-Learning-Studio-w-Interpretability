@@ -1,7 +1,9 @@
 import streamlit as st
 import streamlit_shadcn_ui as ui
-from utilityFunctions import display_results, display_shap, display_lime, display_pdp, display_pfi, reset_model
+from utilityFunctions import display_results, display_eda, display_shap, display_lime, display_pdp, display_pfi, reset_model
 from Model_Linear import LinearSupportVectorMachineModel, LogisticRegressionModel
+import streamlit_shadcn_ui as ui
+
 
 st.subheader('`Linear Models for Classification`')
 
@@ -37,7 +39,7 @@ if st.session_state['models'][model_type[0]] is not None:
         st.rerun()
 
     selected_tab = ui.tabs(
-        options=['RESULTS', 'SHAP', 'LIME', 'PDP', 'PFI'],
+        options=['RESULTS', 'EDA', 'SHAP', 'LIME', 'PDP', 'PFI'],
         default_value=st.session_state['tabs'][model_type[0]],
         key=f"tabs_{model_type[0]}"
     )
@@ -46,6 +48,8 @@ if st.session_state['models'][model_type[0]] is not None:
     # Display content based on the selected tab
     if selected_tab == 'RESULTS':
         display_results(st.session_state['models'][model_type[0]])
+    elif selected_tab == 'EDA':
+        display_eda()
     elif selected_tab == 'SHAP':
         display_shap(st.session_state['models'][model_type[0]]['model'])
     # elif selected_tab == 'LIME':
@@ -56,6 +60,9 @@ if st.session_state['models'][model_type[0]] is not None:
     #     display_pfi(st.session_state['models'][model_type[0]])
 
 elif st.session_state['models'][model_type[1]] is not None:
+    if st.button("Reset Model"):
+        reset_model(model_type[1])
+        st.rerun()
     display_results(st.session_state['models'][model_type[1]])
     selected_tab = ui.tabs(
         options=['SHAP', 'LIME', 'PDP', 'PFI'],
@@ -65,7 +72,11 @@ elif st.session_state['models'][model_type[1]] is not None:
     st.session_state['tabs'][model_type[1]] = selected_tab  # Update session state
 
     # Display content based on the selected tab
-    if selected_tab == 'SHAP':
+    if selected_tab == 'RESULTS':
+        display_results(st.session_state['models'][model_type[1]])
+    elif selected_tab == 'EDA':
+        display_eda()
+    elif selected_tab == 'SHAP':
         display_shap(st.session_state['models'][model_type[1]]['model'])
     # elif selected_tab == 'LIME':
     #     display_lime(st.session_state['models'][model_type[1]])

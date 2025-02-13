@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4565150-f96f-467b-9b63-0a7caa59bee8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/local_components/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/local_components/containers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/local_components/headers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_KMeans.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_KMeans.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model_Linear.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_Linear.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model_DecisionTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model_DecisionTree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/1Preprocess_Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/1Preprocess_Data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/2Linear_Models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/2Linear_Models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilityFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilityFunctions.py" afterDir="false" />
@@ -16,6 +19,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,6 +37,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2rjLWmL1AfxLDLP6XJc64HJdmUD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,6 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Week2",
@@ -200,11 +214,15 @@
       <workItem from="1738271663097" duration="544000" />
       <workItem from="1738272218407" duration="197000" />
       <workItem from="1738272453850" duration="1681000" />
-      <workItem from="1738274255324" duration="10660000" />
+      <workItem from="1738274255324" duration="25956000" />
+      <workItem from="1739401919653" duration="6340000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

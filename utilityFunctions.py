@@ -1,8 +1,7 @@
 
 from sklearn.model_selection import train_test_split
 import streamlit as st
-import matplotlib.pyplot as plt
-import pandas as pd 
+import pandas as pd
 import seaborn as sns
 # needs fix
 import streamlit.components.v1 as components
@@ -10,9 +9,8 @@ from sklearn import metrics
 from sklearn.tree import plot_tree
 from sklearn.inspection import permutation_importance
 import shap
-
-import pandas_profiling
-from streamlit_pandas_profiling import st_profile_report
+from local_components import card_container
+import matplotlib.pyplot as plt
 
 # This function trains the model and displays the accuracy,
 # classification report, and confusion matrix
@@ -106,8 +104,16 @@ def st_shap(plot, height=None):
     shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
     components.html(shap_html, height=height)
 
-def display_EDA(df, precompute=False):
-    pass
+def display_eda():
+    if 'histograms' in st.session_state and st.session_state['histograms']:
+        st.write("###Histograms")
+        for feature, fig in st.session_state['histograms'].items():
+            with card_container(key=f"display_histogram_{feature}"):  # Use a unique key for each card
+                st.write(f"#### {feature} Histogram")  # Add a title for each histogram
+                st.pyplot(fig)  # Display the histogram
+    else:
+        st.warning("No histograms found in session state. Please generate histograms first.")
+
 def display_shap(model):
     st.write("### SHAP Values")
 

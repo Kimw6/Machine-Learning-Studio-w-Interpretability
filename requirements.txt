@@ -24,3 +24,7 @@ streamlit
 tensorflow
 ipython
 shap
+ydata-profiling
+ipywidgets
+pygwalker
+matplotlib

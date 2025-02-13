@@ -18,7 +18,6 @@ class DecisionTreeClassifierModel:
             'class_weight': None,
             'ccp_alpha': 0.0,
         }
- 
 
     def parameters(self):
         st.write("""***Please adjust the parameters below to configure your Decision Tree Classifier model*** more 
