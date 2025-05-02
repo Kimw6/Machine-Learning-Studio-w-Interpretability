@@ -11,7 +11,7 @@ def load_model():
 
 model = load_model()
 
-st.subheader("`Image Classification with ResNet50`")
+st.subheader("Image Classification with ResNet50")
 st.write("This is pre-trained on the ImageNet dataset. More information about the dataset can be found [here](http://www.image-net.org/).")
 uploaded_image = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 

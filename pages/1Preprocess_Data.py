@@ -25,8 +25,7 @@ NORM_TYPE = [None, 'StandardScaler', 'MinMaxScaler', 'MaxAbsScaler', 'RobustScal
 
 # Function to upload file and preprocess data
 def upload_file():
-    st.subheader("`Upload and Preprocess Data`")
-    st.write("""***Upload your data and preprocess it to gain insights into your data.***""")
+    st.subheader("Upload and Preprocess Data")
     upload_file = st.file_uploader('Upload your data here', type=['csv', 'xlsx'])
     if upload_file is not None:
         if st.button('Upload'):
@@ -49,7 +48,6 @@ def upload_file():
                 st.session_state['df'] = temp_df
             except Exception as e:
                 st.error('Error: {}'.format(e))
-    st.write()
     st.write("""***Or Use the Breast Cancer Dataset***
         More info on [Breast Cancer Dataset](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic)""")
     if st.button('Load Breast Cancer Dataset'):
@@ -166,8 +164,7 @@ def process_eda():
 
         # Store the figure in session_state
         st.session_state['histograms'][feature] = fig
-
-    st.success("Histograms generated and stored in session state!")
+    st.success("Successfully preprocessed data")
 
 # Call the functions to run the app
 upload_file()
@@ -176,5 +173,6 @@ if st.session_state['df'] is not None:
     process_data()
     if st.session_state['target'] is not None:
         normalize_delete()
-        if st.button('Process EDA'):
-            process_eda()
+        process_eda()
+
+

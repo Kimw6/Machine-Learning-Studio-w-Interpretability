@@ -1,8 +1,9 @@
 import streamlit as st
-from utilityFunctions import  display_results
+from utilityFunctions import display_results, display_shap, display_lime, display_pdp, display_pfi, reset_model
 from Model_DecisionTree import DecisionTreeClassifierModel
+import streamlit_shadcn_ui as ui
 
-st.subheader('`Decision Trees Models for Classification`')
+st.subheader('Decision Trees Models for Classification')
 
 default_session_state = {
     'df': None,
@@ -26,9 +27,34 @@ for model in model_type:
     if model not in st.session_state['models']:
         st.session_state['models'][model] = None
 
+if 'tabs' not in st.session_state:
+    st.session_state['tabs'] = {model: 'RESULTS' for model in model_type}
+
 if st.session_state['models'][model_type[0]] is not None:
-    display_results(st.session_state['models'][model_type[0]])
-else:
+    if st.button("Reset Model"):
+        reset_model(model_type[0])
+        st.session_state['train'] = False
+        st.rerun()
+
+    selected_tab = ui.tabs(
+        options=['RESULTS', 'SHAP', 'LIME', 'PDP', 'PFI', 'Compare Models'],
+        default_value=st.session_state['tabs'][model_type[0]],
+        key=f"tabs_{model_type[0]}"
+    )
+    st.session_state['tabs'][model_type[0]] = selected_tab
+
+    # Display content based on the selected tab
+    if selected_tab == 'RESULTS':
+        display_results(st.session_state['models'][model_type[0]])
+    elif selected_tab == 'SHAP':
+        display_shap(st.session_state['models'][model_type[0]]['model'])
+    elif selected_tab == 'LIME':
+        display_lime(st.session_state['models'][model_type[0]])
+    # elif selected_tab == 'PDP':
+    #     display_pdp(st.session_state['models'][model_type[0]])
+    # elif selected_tab == 'PFI':
+    #     display_pfi(st.session_state['models'][model_type[0]])
+    # elif selected_tab == 'Compare_Models':else:
     st.write(f"No trained model found.")
 
 def model_selection():
@@ -67,7 +93,10 @@ def model_selection():
 if st.session_state['df'] is not None and st.session_state['target'] is not None:
     model_selection()
 else:
-    st.warning('Please Upload Your data via selecting the "Preprocess Data" option in the sidebar to proceed.', icon="⚠️")
+    st.error("Oops, looks like your data is unavailable. \n\n Please try uploading you data again.", icon="⚠️")
+    # Going to the previous tab
+    if ui.button("Re-upload Data", key="page_link_btn", variant="outline"):
+        st.switch_page("pages/1Preprocess_Data.py")  # Adjust path as needed
 
 if st.session_state['train']:
     model_type = st.session_state['linear_model']

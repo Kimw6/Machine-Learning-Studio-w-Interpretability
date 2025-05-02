@@ -2,7 +2,7 @@ import streamlit as st
 from Model_NN import create_model, train_model
 from utilityFunctions import handle_errors
 
-st.subheader('`Build Your Custom Neural Network for Classification`')
+st.subheader('Build Your Custom Neural Network for Classification')
 
 default_session_state = {
     'df': None,

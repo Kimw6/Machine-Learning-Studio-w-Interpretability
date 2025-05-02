@@ -2,7 +2,7 @@ import streamlit as st
 from Model_KMeans import KMeansClusteringModel
 from Model_PCA import PCAModel
 
-st.subheader("`Unsupervised Machine Learning`")
+st.subheader("Unsupervised Machine Learning")
 
 default_session_state = {
     'df': None,

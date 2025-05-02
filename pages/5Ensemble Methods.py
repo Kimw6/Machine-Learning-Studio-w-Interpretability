@@ -2,7 +2,7 @@ import streamlit as st
 from utilityFunctions import  display_results
 from Model_Ensemble import RandomForestClassifierModel, GradientBoostingClassifierModel, AdaBoostClassifierModel
 
-st.subheader("`Ensemble Methods for Classification`")
+st.subheader("Ensemble Methods for Classification")
 
 default_session_state = {
     'df': None,

@@ -1,11 +1,11 @@
 import streamlit as st
 import streamlit_shadcn_ui as ui
-from utilityFunctions import display_results, display_eda, display_shap, display_lime, display_pdp, display_pfi, reset_model
+from utilityFunctions import display_results, display_shap, display_lime, display_pdp, display_pfi, reset_model
 from Model_Linear import LinearSupportVectorMachineModel, LogisticRegressionModel
 import streamlit_shadcn_ui as ui
 
 
-st.subheader('`Linear Models for Classification`')
+st.subheader('Linear Models for Classification')
 
 default_session_state = {
     'df': None,
@@ -14,6 +14,8 @@ default_session_state = {
     'test_size': None,
     'random_state': None,
     'train': None,
+    'X_test': None,
+    'y_test': None,
 }
 
 for key, value in default_session_state.items():
@@ -32,14 +34,14 @@ for model in model_type:
 if 'tabs' not in st.session_state:
     st.session_state['tabs'] = {model: 'RESULTS' for model in model_type}
 
-
 if st.session_state['models'][model_type[0]] is not None:
     if st.button("Reset Model"):
         reset_model(model_type[0])
+        st.session_state['train'] = False
         st.rerun()
 
     selected_tab = ui.tabs(
-        options=['RESULTS', 'EDA', 'SHAP', 'LIME', 'PDP', 'PFI'],
+        options=['RESULTS', 'SHAP', 'LIME', 'PDP', 'PFI', 'Compare Models'],
         default_value=st.session_state['tabs'][model_type[0]],
         key=f"tabs_{model_type[0]}"
     )
@@ -48,16 +50,16 @@ if st.session_state['models'][model_type[0]] is not None:
     # Display content based on the selected tab
     if selected_tab == 'RESULTS':
         display_results(st.session_state['models'][model_type[0]])
-    elif selected_tab == 'EDA':
-        display_eda()
     elif selected_tab == 'SHAP':
         display_shap(st.session_state['models'][model_type[0]]['model'])
-    # elif selected_tab == 'LIME':
-    #     display_lime(st.session_state['models'][model_type[0]])
-    # elif selected_tab == 'PDP':
-    #     display_pdp(st.session_state['models'][model_type[0]])
+    elif selected_tab == 'LIME':
+        display_lime(st.session_state['models'][model_type[0]])
+    elif selected_tab == 'PDP':
+        display_pdp(st.session_state['models'][model_type[0]])
     # elif selected_tab == 'PFI':
     #     display_pfi(st.session_state['models'][model_type[0]])
+    # elif selected_tab == 'Compare_Models':
+
 
 elif st.session_state['models'][model_type[1]] is not None:
     if st.button("Reset Model"):
@@ -74,17 +76,24 @@ elif st.session_state['models'][model_type[1]] is not None:
     # Display content based on the selected tab
     if selected_tab == 'RESULTS':
         display_results(st.session_state['models'][model_type[1]])
-    elif selected_tab == 'EDA':
-        display_eda()
     elif selected_tab == 'SHAP':
         display_shap(st.session_state['models'][model_type[1]]['model'])
-    # elif selected_tab == 'LIME':
-    #     display_lime(st.session_state['models'][model_type[1]])
+    elif selected_tab == 'LIME':
+        display_lime(st.session_state['models'][model_type[1]])
     # elif selected_tab == 'PDP':
     #     display_pdp(st.session_state['models'][model_type[1]])
     # elif selected_tab == 'PFI':
     #     display_pfi(st.session_state['models'][model_type[1]])
-
+    # elif selected_tab == 'Compare Models':
+    #     st.write("### Model Comparison")
+    #
+    #     if not st.session_state['trained_models']:
+    #         st.warning("No trained models found. Please train at least one model.")
+    #     else:
+    #         # Display metrics for all trained models
+    #         for model_name, model_data in st.session_state['trained_models'].items():
+    #             st.write(f"#### {model_name}")
+    #             display_results(model_data)
 def linear_model():
     def on_click():
         if st.session_state['temp_linear_model'] is None:
@@ -102,15 +111,16 @@ def linear_model():
         st.session_state['train'] = True
 
     num_classes = len(st.session_state['df'][st.session_state['target']].unique())
-    with st.form(key='linear_model_multi'):
-        st.write('Number of Classes: ', num_classes)
-        st.selectbox("Choose a Model for Classification", model_type, key='temp_linear_model')
-        st.number_input("Choose the Test Data Size Ratio", key='temp_test_size',
-                        value=0.2, step=0.05, min_value=0.05, max_value=0.9)
-        st.number_input("Choose a Random State", key='rand_state',
-                        value=42, step=1, min_value=0, max_value=1000)
-        st.form_submit_button('Select', on_click=on_click)
 
+    if not st.session_state['train']:
+        with st.form(key='linear_model_multi'):
+            st.write('Number of Classes: ', num_classes)
+            st.selectbox("Choose a Model for Classification", model_type, key='temp_linear_model')
+            st.number_input("Choose the Test Data Size Ratio", key='temp_test_size',
+                            value=0.2, step=0.05, min_value=0.05, max_value=0.9)
+            st.number_input("Choose a Random State", key='rand_state',
+                            value=42, step=1, min_value=0, max_value=1000)
+            st.form_submit_button('Select', on_click=on_click)
 
 if st.session_state['df'] is not None and st.session_state['target'] is not None:
     linear_model()
@@ -133,4 +143,3 @@ if st.session_state['train']:
 
         st.session_state['temp_name'] = model_type
 
-    st.session_state['train'] = False
