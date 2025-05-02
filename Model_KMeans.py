@@ -56,10 +56,6 @@ class KMeansClusteringModel:
         except Exception as e:
             st.error(e)
 
-
-
-
-
     def train_model(self,kmeans):
         X = st.session_state['df'].drop(st.session_state['target'], axis=1)
         st.title('K-Means Clustering Visualization')
@@ -78,6 +74,8 @@ class KMeansClusteringModel:
             self.confusion_matrix(target, labels)
         st.write('Data with Cluster Labels added')
         st.write(X1)
+
+        # **TODO** There is a bug here,
         st.download_button('Download Data', data=X.to_csv(index=False), file_name='clustered_data.csv', mime='text/csv')
 
     def confusion_matrix(self, y_test, y_pred):

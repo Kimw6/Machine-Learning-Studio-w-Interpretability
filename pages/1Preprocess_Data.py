@@ -1,9 +1,11 @@
 # Import necessary libraries
 import streamlit as st
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler, RobustScaler, QuantileTransformer
 from sklearn.datasets import load_breast_cancer
 from Model_PCA import PCAModel
+import matplotlib.pyplot as plt
 
 # Function to load data
 def load_data():
@@ -23,8 +25,7 @@ NORM_TYPE = [None, 'StandardScaler', 'MinMaxScaler', 'MaxAbsScaler', 'RobustScal
 
 # Function to upload file and preprocess data
 def upload_file():
-    st.subheader("`Upload and Preprocess Data`")
-    st.write("""***Upload your data and preprocess it to gain insights into your data.***""")
+    st.subheader("Upload and Preprocess Data")
     upload_file = st.file_uploader('Upload your data here', type=['csv', 'xlsx'])
     if upload_file is not None:
         if st.button('Upload'):
@@ -46,8 +47,7 @@ def upload_file():
                 temp_df = temp_df.reset_index(drop=True)
                 st.session_state['df'] = temp_df
             except Exception as e:
-                st.error('Error: {}'.format(e))  
-    st.write()
+                st.error('Error: {}'.format(e))
     st.write("""***Or Use the Breast Cancer Dataset***
         More info on [Breast Cancer Dataset](https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic)""")
     if st.button('Load Breast Cancer Dataset'):
@@ -63,9 +63,9 @@ def upload_file():
             temp_df = temp_df.reset_index(drop=True)
             st.session_state['df'] = temp_df
         except Exception as e:
-            st.error('Error: {}'.format(e))   
+            st.error('Error: {}'.format(e))
 
-# Function to apply normalization
+        # Function to apply normalization
 def apply_normalization(normalization_type):
     normalization_functions = {
         None: None,
@@ -88,12 +88,10 @@ def download_link():
     st.warning(""" If you need a copy of the cleaned data, please click the download button below.
                Otherwise, you can proceed to the next step by selecting the model you want to use
                on the left side of the screen.""")
-    
     st.download_button('Download Data', data=temp_df.to_csv(index=False), file_name='cleaned_data.csv', mime='text/csv')
 
 # Function to process data
 def process_data():
-
     def on_click():
         if not st.session_state['temp_target']:
             st.error('Please select a target variable')
@@ -109,7 +107,7 @@ def process_data():
         st.radio('***Select the normalization method***', NORM_TYPE, key='norm_method')
         #st.checkbox('Apply PCA', key='apply_pca')
         st.form_submit_button('Process Data', on_click=on_click)
-  
+
 # Function to normalize data and delete columns
 def normalize_delete():
     temp_df = st.session_state['df']
@@ -135,7 +133,7 @@ def normalize_delete():
             st.session_state['df'] = temp_df
             download_link()
             # if st.session_state['apply_pca']:
-                
+
             #     pca_model = PCAModel()
             #     df = pca_model.parameters()
             #     st.session_state['df'] = df
@@ -143,12 +141,38 @@ def normalize_delete():
             st.session_state['df'] = temp_df
             st.error('Error: {}'.format('Your data contains non-numeric values. Please remove them and try again.'))
             print(e)
-            return  
+            return
+
+def process_eda():
+    target = st.session_state['target']
+    df_copy = st.session_state['df'].copy()
+    features_list = list(df_copy.columns)
+    features_list.remove(target)
+
+    # Initialize a dictionary in session_state to store histograms
+    if 'histograms' not in st.session_state:
+        st.session_state['histograms'] = {}
+
+    # Loop through each feature and create a histogram
+    for feature in features_list:
+        fig, ax = plt.subplots(figsize=(8, 4))  # Create a new figure for each histogram
+        df_copy[feature].hist(bins=40, edgecolor='b', linewidth=1.0, grid=False, color='red', ax=ax)
+        ax.set_title(feature, fontsize=10)
+        ax.tick_params(axis='x', labelsize=8)
+        ax.tick_params(axis='y', labelsize=8)
+        plt.tight_layout()
+
+        # Store the figure in session_state
+        st.session_state['histograms'][feature] = fig
+    st.success("Successfully preprocessed data")
 
 # Call the functions to run the app
 upload_file()
+
 if st.session_state['df'] is not None:
     process_data()
     if st.session_state['target'] is not None:
         normalize_delete()
-        
+        process_eda()
+
+
