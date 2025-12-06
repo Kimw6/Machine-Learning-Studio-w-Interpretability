@@ -21,7 +21,6 @@ scikit-learn
 scipy
 seaborn
 streamlit
-tensorflow
 ipython
 shap
 ydata-profiling
@@ -29,3 +28,5 @@ ipywidgets
 pygwalker
 matplotlib
 lime
+streamlit_shap
+streamlit_shadcn_ui

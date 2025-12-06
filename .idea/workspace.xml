@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4565150-f96f-467b-9b63-0a7caa59bee8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/2Explatory_Data_Analysis_(EDA).py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home.py" beforeDir="false" afterPath="$PROJECT_DIR$/Home.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/1Preprocess_Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/1Preprocess_Data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/2Linear_Models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/3Linear_Models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/3Decision_Trees.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/4Decision_Trees.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/4Ensemble Methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/5Ensemble Methods.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/5Neural_Networks.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/6Neural_Networks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/6Unsupervised_Machine_Learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/7Unsupervised_Machine_Learning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/7Resnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/8Resnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/8Tutorials_and_Resources.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/9Tutorials_and_Resources.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/2Explatory_Data_Analysis_(EDA).py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/2Explatory_Data_Analysis_(EDA).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/3Linear_Models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/3Linear_Models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/4Decision_Trees.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/4Decision_Trees.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/5Ensemble Methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/5Ensemble Methods.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utilityFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilityFunctions.py" afterDir="false" />
     </list>
@@ -55,7 +50,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Week2&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/yunho/Desktop/GitHub/Machine-Learning-Platform&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -147,6 +142,9 @@
       <workItem from="1743321861478" duration="57000" />
       <workItem from="1744830715819" duration="513000" />
       <workItem from="1744831237398" duration="14181000" />
+      <workItem from="1746223053758" duration="4871000" />
+      <workItem from="1747089635294" duration="2987000" />
+      <workItem from="1747094157291" duration="21961000" />
     </task>
     <servers />
   </component>

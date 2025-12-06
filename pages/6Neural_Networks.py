@@ -1,56 +1,44 @@
 import streamlit as st
-from Model_NN import create_model, train_model
-from utilityFunctions import handle_errors
+from Models.Model_NN import NeuralNetworkModel
+import streamlit_shadcn_ui as ui
+import utilityFunctions as progress
 
-st.subheader('Build Your Custom Neural Network for Classification')
+st.set_page_config(layout="centered", page_title="Neural Network for Classification", page_icon="🧠")
+progress.render_sidebar(read_only=True)
+st.title("Neural Network for Classification")
 
+# defaults
 default_session_state = {
     'df': None,
     'target': None,
-    'train' : None,
+    'trained_nn': False,
 }
-
 for key, value in default_session_state.items():
-    if key not in st.session_state:       
+    if key not in st.session_state:
         st.session_state[key] = value
 
-type_of_classification = ['Binary Classification', 'Multi-Class Classification']
+# Initialize model container
+if 'models' not in st.session_state:
+    st.session_state['models'] = {}
+if 'Neural Network' not in st.session_state['models']:
+    st.session_state['models']['Neural Network'] = None
 
-def model_selection():
-    def on_click():
-        if st.session_state['random_state'] is None:
-            st.warning('Please select a random state.', icon="⚠️")
-            return
-
-        st.session_state['train'] = True
-
-    num_classes = len(st.session_state['df'][st.session_state['target']].unique())
-
-    with st.form(key='linear_model_multi'):
-        st.write('Current Uploaded Data has `{}` classes for `{}`'.format(num_classes, st.session_state['target']))
-        st.write('Current size of the data is `{}`'.format(st.session_state['df'].shape))
-        st.write('Please select number hidden layers for your Neural Network')
-        st.number_input("Select Number of Hidden Layers", min_value=1, max_value=5, step=1, key='num_layer', value=2)
-        st.number_input("Select Random State", min_value=1, max_value=1000, step=1, key='random_state', value=42)
-        st.number_input("Number of Epochs", min_value=1, max_value=100, step=1, key='epochs', value=10)
-        st.form_submit_button('Select', on_click=on_click)
-
+# main flow
 if st.session_state['df'] is not None and st.session_state['target'] is not None:
-    model_selection()
-else:
-    st.warning('Please Upload Your data via selecting the "Preprocess Data" option in the sidebar to proceed.', icon="⚠️")
+    model = NeuralNetworkModel()
+    model.parameters()  # show form if not trained
 
-if st.session_state['train']:
-    num_layers = st.session_state['num_layer']
-    random_state = st.session_state['random_state']
-    df = st.session_state['df']
-    target = st.session_state['target']
-    try:
-        model = create_model(df, target, num_layers, random_state)
-        st.warning('Activation Functions: Relu for hidden layers')
-        st.warning('Output Activation Function: Sigmoid for Binary Classification, Softmax for Multi-Class Classification')
-        model.summary(print_fn=lambda x: st.text(x))
-        train_model(model, st.session_state['epochs'], random_state)
-    except Exception as e:
-        handle_errors(e)
-    st.session_state['train'] = False
+    # If trained, show reset and results
+    if st.session_state['models']['Neural Network']:
+
+        model_data = st.session_state['models']['Neural Network']
+        if model_data and model_data.get('trained'):
+            progress.set_done("qs_train", True)
+            if st.button("Reset Neural Network"):
+                model.reset_model()
+            model.display_results(model_data)
+
+else:
+    st.error("Oops, looks like your data is unavailable. \n\n Please try uploading your data again.", icon="⚠️")
+    if ui.button("Re-upload Data", key="page_link_btn", variant="outline"):
+        st.switch_page("pages/1Preprocess_Data.py")

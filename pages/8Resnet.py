@@ -3,8 +3,9 @@ import tensorflow as tf
 from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
 from tensorflow.keras.models import Model
 from PIL import Image
+import utilityFunctions as progress
 
-
+st.set_page_config(layout="centered", page_title="ResNet50 Image Classification", page_icon="🖼️")
 def load_model():
     model = tf.keras.applications.resnet50.ResNet50(weights='imagenet')
     return model
