@@ -1,8 +1,12 @@
 # Streamlit App for Capstone
 
-This repository contains a Streamlit web application. Streamlit is a Python library for creating web apps with minimal effort. This README provides instructions on how to set up and run the app locally using a virtual environment.
+This repository contains the Streamlit web application developed for my capstone project. Streamlit allows you to create interactive web apps in Python with minimal setup.
 
-## Prerequisites
+## Access the Application
+1. Connect to Husky OnNet (or campus Wi-Fi)
+2. Open: http://ibioml.uwb.edu:8065/
+
+## Prerequisites (Local use)
 
 Before you can run this Streamlit app, ensure you have the following prerequisites installed on your system:
 
