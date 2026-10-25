@@ -3,7 +3,8 @@
 This repository contains the Streamlit web application developed for my capstone project. Streamlit allows you to create interactive web apps in Python with minimal setup.
 
 ## Access the Application
-Open: https://bioinformatics.uwb.edu:8065/
+Open: https://bioinformatics.uwb.edu/iml/
+
 
 ## Prerequisites (Local use)
 
