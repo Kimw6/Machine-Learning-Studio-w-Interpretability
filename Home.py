@@ -4,7 +4,7 @@ import utilityFunctions as progress
 st.set_page_config(layout="centered", page_title="Home", page_icon="🏠")
 progress.render_sidebar(read_only=True)
 
-st.subheader("Welcome to the Machine Learning Studio 🎓")
+st.subheader("Welcome to iML Studio 🎓")
 
 st.write("""
 The **Machine Learning Studio (MLSP)** is an interactive web platform that enables **students, researchers, and professionals** in fields such as **healthcare, education, and data science** to build, visualize, and interpret machine learning models without requiring extensive coding experience.  
