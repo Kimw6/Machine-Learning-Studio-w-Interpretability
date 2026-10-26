@@ -7,8 +7,8 @@ progress.render_sidebar(read_only=True)
 st.subheader("Welcome to iML Studio 🎓")
 
 st.write("""
-The **Machine Learning Studio (MLSP)** is an interactive web platform that enables **students, researchers, and professionals** in fields such as **healthcare, education, and data science** to build, visualize, and interpret machine learning models without requiring extensive coding experience.  
-It provides tools for **data preprocessing**, **exploratory data analysis (EDA)**, **model training**, and **interpretability**, helping users understand how models make predictions and what factors influence those decisions.
+The **iML Studio (Interpretable Machine Learning Studio)** is an interactive web platform that enables **students, researchers, and professionals** in fields such as **healthcare, education, and data science** to build, visualize, and interpret machine learning models without requiring extensive coding experience.  
+It provides tools for **data preprocessing**, **exploratory data analysis (EDA)**, **model training**, and **interpretability**, helping users understand how models make predictions and what factors influence those decisions. Please use the following link to cite the program, https://zenodo.org/records/20266111
 """)
 
 st.write("")  # light vertical space
@@ -45,7 +45,7 @@ If you encounter issues or bugs, try the following:
 - Make sure a **target** column is selected  
 - Verify your dataset has clean headers and consistent data types  
 
-**Contact:** chojon99@uw.edu for any additional help or support.
+**Contact:** chojon99@uw.edu or kimw6@uw.edu for any additional help or support.
 """)
 
 st.write("")
