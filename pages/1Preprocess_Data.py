@@ -60,7 +60,7 @@ def upload_file():
         st.subheader("Upload Your Data for Preprocessing")
         with card_container(key="uploaded_data"):
             st.write("")
-            upload_file = st.file_uploader('Upload your data here', type=['csv', 'xlsx'])
+            upload_file = st.file_uploader('Upload your data here', type=['csv'])
             if upload_file is not None:
                 st.write(f"Uploaded file size: {upload_file.size / (1024 * 1024):.2f} MB")
                 if st.button('Upload'):
@@ -83,9 +83,9 @@ def upload_file():
                             st.session_state['memory_warning'] = True
                             st.error("Warning: This file may be too large for processing. Consider reducing its size.")
                             return
-                        with st.expander("View Your Data", expanded=True):
+                        with st.container():
                             st.subheader("Overview of Uploaded Data")
-                            with card_container(key="uploaded_data"):
+                            with card_container(key="uploaded_data_preview"):
                                 st.write("")
                                 st.write('Data Uploaded Successfully')
                                 st.write('***Data Shape***: ', temp_df.shape)
