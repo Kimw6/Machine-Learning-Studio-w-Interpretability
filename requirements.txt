@@ -30,3 +30,4 @@ lime
 streamlit_shap
 streamlit_shadcn_ui
 streamlit_extras
+tensorflow
