@@ -10,7 +10,7 @@ Open: https://bioinformatics.uwb.edu/iml/
 
 Before you can run this Streamlit app, ensure you have the following prerequisites installed on your system:
 
-- Python 3.x (preferably Python 3.6+): Current server runs on Python 3.10. Python 3.9 was also verified to run.
+- Python 3.x (preferably Python 3.6+): Current server runs on Python 3.9.18
 - pip (Python package manager)
 - Git (for cloning this repository)
 
