@@ -26,7 +26,6 @@ shap
 ydata-profiling
 ipywidgets
 pygwalker
-matplotlib
 lime
 streamlit_shap
 streamlit_shadcn_ui
